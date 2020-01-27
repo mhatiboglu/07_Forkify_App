@@ -1,1 +1,1 @@
-// Global app controller
+// Global app controller.
