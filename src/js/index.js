@@ -1,5 +1,5 @@
 // Global app controller.
 
 import num from "./test";
-
-console.log(` imported num is =  ${num}`);
+const x = 12;
+console.log(` imported num is =  ${num} and x is ${x}`);
