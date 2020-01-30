@@ -2,4 +2,4 @@
 
 import num from "./test";
 
-console.log(num);
+console.log(` imported num is =  ${num}`);
