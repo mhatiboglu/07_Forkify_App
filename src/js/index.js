@@ -1,4 +1,5 @@
 import Search from "./modules/Search";
+import Recipe from "./modules/Recipe";
 import * as searchView from "./views/searchView";
 import { elements, renderLoader, clearLoader } from "./views/base";
 /*Global state of the app
@@ -8,6 +9,10 @@ import { elements, renderLoader, clearLoader } from "./views/base";
 --Linked recipes
 */
 const state = {};
+
+/*----------------- */
+/*SEARCH CONTROLLER */
+/*----------------- */
 
 const controlSearch = async () => {
   //1. Get query from view
@@ -21,12 +26,17 @@ const controlSearch = async () => {
     searchView.clearInput();
     searchView.clearResult();
     renderLoader(elements.searchRes);
-    //4. Search for recipes
-    await state.search.getResult();
 
-    //5. Render results on UI
-    clearLoader();
-    searchView.renderResults(state.search.result);
+    try {
+      //4. Search for recipes
+      await state.search.getResult();
+
+      //5. Render results on UI
+      clearLoader();
+      searchView.renderResults(state.search.result);
+    } catch (err) {
+      console.log("Something wrong with the search!");
+    }
   }
 };
 //we used preventDefault fot stop to refresh page;
@@ -42,6 +52,41 @@ elements.searchResPages.addEventListener("click", e => {
     const goToPage = parseInt(btn.dataset.goto);
     searchView.clearResult();
     searchView.renderResults(state.search.result, goToPage);
-    console.log(goToPage);
+    //console.log(goToPage);
   }
+});
+
+/*----------------- */
+/*RECIPE CONTROLLER */
+/*----------------- */
+
+const controlRecipe = async () => {
+  //Get Id frim url
+  const id = window.location.hash.replace("#", "");
+  //console.log(id);
+
+  if (id) {
+    //prepera UI for changes
+
+    // create new recipe
+    state.recipe = new Recipe(id);
+    try {
+      // get recipe data
+      await state.recipe.getRecipe();
+      // calculate serving and time
+      state.recipe.calcTime();
+      state.recipe.calcServings();
+      // render recipe
+      console.log(state.recipe);
+    } catch (err) {
+      alert("Error processing recipe!");
+    }
+  }
+};
+
+// window.addEventListener("hashchange", controlRecipe);
+// window.addEventListener("load", controlRecipe);
+
+["hashchange", "load"].forEach(event => {
+  window.addEventListener(event, controlRecipe);
 });
