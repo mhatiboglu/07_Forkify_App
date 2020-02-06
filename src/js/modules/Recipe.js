@@ -48,9 +48,15 @@ export default class Recipe {
       "cup",
       "pound"
     ];
+    //const units = [...unitsShort, "kg", "g"];
+
     const newIngredients = this.ingredients.map(el => {
+      console.log(el);
+
       //1. Uniform units
+      console.log(ingredient);
       let ingredient = el.toLowerCase();
+      console.log(ingredient);
       unitsLong.forEach((unit, i) => {
         ingredient = ingredient.replace(unit, unitsShort[i]);
       });
@@ -73,7 +79,7 @@ export default class Recipe {
         objIng = {
           count,
           unit: arrIng[unitIndex],
-          ingredient: arrIng.slice(unitIndex+1).join("")
+          ingredient: arrIng.slice(unitIndex + 1).join("")
         };
       } else if (parseInt(arrIng[0], 10)) {
         // there is no unit but first element is number
@@ -90,7 +96,11 @@ export default class Recipe {
           ingredient
         };
       }
-
+      //////////////
+      if (objIng.count === undefined) {
+        objIng.count = 1;
+      }
+      ///////////////
       return objIng;
     });
     this.ingredients = newIngredients;
