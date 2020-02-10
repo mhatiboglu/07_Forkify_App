@@ -49,7 +49,6 @@ elements.searchForm.addEventListener("submit", e => {
   controlSearch();
 });
 
-
 elements.searchResPages.addEventListener("click", e => {
   const btn = e.target.closest(".btn-inline");
 
@@ -73,6 +72,10 @@ const controlRecipe = async () => {
     //prepera UI for changes
     recipeView.clearRecipe();
     renderLoader(elements.recipe);
+
+    //Highlight selected search item
+    if (state.search) searchView.highlightSelected(id);
+
     // create new recipe
     state.recipe = new Recipe(id);
 
