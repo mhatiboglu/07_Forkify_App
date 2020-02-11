@@ -108,12 +108,14 @@ const controlRecipe = async () => {
 
 elements.recipe.addEventListener("click", e => {
   // any click of button decrease or any child of btn-decrease
-  if (e.target.matches(".btn-decrease , btn-decrease *")) {
+  if (e.target.matches(".btn-decrease, .btn-decrease *")) {
     // decrease btn click
+    console.log("dec----");
     state.recipe.updateServings("dec");
-  } else if (e.target.matches(".btn-increase , btn-increase *")) {
+  } else if (e.target.matches(".btn-increase, .btn-increase *")) {
     //increase btn clicked
-    state.recipe.updateServings("inc");
+    console.log("inc");
+    state.recipe.updateServings("inc----");
   }
-  console.log('state',state.recipe);
+  console.log("state", state.recipe);
 });
