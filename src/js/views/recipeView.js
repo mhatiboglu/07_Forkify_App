@@ -18,7 +18,7 @@ const formatCount = count => {
     // Return only decimal if there is no intiger
     if (int === 0) {
       const fr = new Fraction(count);
-      return `${fr.numerator}/${fr.denominotor}`;
+      return `${fr.numerator}/${fr.denominator}`;
     }
     // count =2.5 ---> 2 1/2
     else {

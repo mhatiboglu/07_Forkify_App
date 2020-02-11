@@ -51,10 +51,10 @@ export default class Recipe {
     //const units = [...unitsShort, "kg", "g"];
 
     const newIngredients = this.ingredients.map(el => {
-      console.log(el);
+      //console.log(el);
 
       //1. Uniform units
-      console.log(ingredient);
+      //console.log(ingredient);
       let ingredient = el.toLowerCase();
       console.log(ingredient);
       unitsLong.forEach((unit, i) => {
@@ -104,5 +104,16 @@ export default class Recipe {
       return objIng;
     });
     this.ingredients = newIngredients;
+  }
+
+  updateServings(type) {
+    // Servings
+    const newServings = type === "dec" ? this.servings - 1 : this.servings + 1;
+
+    //Ingredients
+    this.ingredients.forEach(ing => {
+      ing.count *= newServings / this.servings;
+    });
+    this.servings = newServings;
   }
 }
