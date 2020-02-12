@@ -1,5 +1,6 @@
 import Search from "./modules/Search";
 import Recipe from "./modules/Recipe";
+import List from "./modules/List";
 import * as searchView from "./views/searchView";
 import * as recipeView from "./views/recipeView";
 import { elements, renderLoader, clearLoader } from "./views/base";
@@ -110,12 +111,16 @@ elements.recipe.addEventListener("click", e => {
   // any click of button decrease or any child of btn-decrease
   if (e.target.matches(".btn-decrease, .btn-decrease *")) {
     // decrease btn click
-    console.log("dec----");
-    state.recipe.updateServings("dec");
+    if (state.recipe.servings > 1) {
+      state.recipe.updateServings("dec");
+      recipeView.updateServingsIngredients(state.recipe);
+    }
   } else if (e.target.matches(".btn-increase, .btn-increase *")) {
     //increase btn clicked
-    console.log("inc");
     state.recipe.updateServings("inc----");
+    recipeView.updateServingsIngredients(state.recipe);
   }
-  console.log("state", state.recipe);
+  //console.log("state", state.recipe);
 });
+
+window.l = new List();
