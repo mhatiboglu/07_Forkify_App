@@ -12,6 +12,7 @@ import { elements, renderLoader, clearLoader } from "./views/base";
 --Linked recipes
 */
 const state = {};
+window.state = state;
 
 /*----------------- */
 /*SEARCH CONTROLLER */
@@ -120,8 +121,24 @@ const controlList = () => {
   });
 };
 
-//handling recipe button clicks
+//handle delete and update list items event
+elements.shopping.addEventListener("click", e => {
+  const id = e.target.closest(".shopping__item").dataset.itemid;
+  //handle delete
+  if (e.target.matches(".shopping__delete, .shopping__delete *")) {
+    //delete from state
+    state.list.deleteItem(id);
+    //delete from UI
+    listView.deleteItem(id);
+    //Handle the update count
+  } else if (e.target.matches(".shopping__count-value")) {
+    console.log("uydu");
+    const val = parseFloat(e.target.value, 10);
+    state.list.updateCount(id, val);
+  }
+});
 
+//handle recipe button clicks
 elements.recipe.addEventListener("click", e => {
   // any click of button decrease or any child of btn-decrease
   if (e.target.matches(".btn-decrease, .btn-decrease *")) {

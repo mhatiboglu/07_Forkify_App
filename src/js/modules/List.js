@@ -21,6 +21,7 @@ export default class List {
     this.items.splice(index, 1);
   }
   updateCount(id, newCount) {
+    console.log("updatecount");
     //Find the item with id and change the count with given newCount
     this.items.find(el => el.id === id).count = newCount;
   }
