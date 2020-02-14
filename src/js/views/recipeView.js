@@ -120,7 +120,7 @@ export const renderRecipe = recipe => {
                   recipe.url
                 }" target="_blank">
                     <span>Directions</span>
-                    <svg class="s earch__icon">
+                    <svg class="search__icon">
                         <use href="img/icons.svg#icon-triangle-right"></use>
                     </svg>
 
