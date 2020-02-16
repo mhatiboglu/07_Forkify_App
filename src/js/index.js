@@ -166,7 +166,7 @@ const controlLike = () => {
     //Toggle the like button
     likesView.toggleLikeBtn(true);
     //Add like to UI list
-    console.log(state.likes);
+    likesView.renderLike(newLike);
     //user has liked current recipe
   } else {
     //Remove like from the state
@@ -175,7 +175,7 @@ const controlLike = () => {
     likesView.toggleLikeBtn(false);
 
     //Remove like from UI list
-    console.log(state.likes);
+    likesView.deleteLike(currentID);
   }
   likesView.toggleLikeMenu(state.likes.getNumLikes());
 };
