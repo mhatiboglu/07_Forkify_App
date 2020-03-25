@@ -37,6 +37,6 @@ $ npm run start
 
 [Jonas Schmedtmann](https://twitter.com/jonasschmedtman)
 
-## License
+### License
 
 MIT
